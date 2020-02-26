@@ -1,59 +1,20 @@
 library(testthat)
 source("location_repo_strc.R")
 test_that(
-   "Threshold Filter test expect 2 thresholds in the output file",
+   "location repo strc all files exists",
    {
-     DirIn <- "tests/test_input/pfs/threshold"
+     DirIn <- "tests/test_input/pfs/prt"
      DirOut <- "tests/test_output/pfs/out"
-     Term <- "temp"
-     Ctxt <- "aspirated-single"
-     OutPutFile <- file.path(DirOut, "thresholds.json")
-     filter_threshold(DirIn,DirOut, Term,Ctxt)
-     result <- rjson::fromJSON(file=OutPutFile,simplify=TRUE)
-     expect_true(length(result$thresholds) ==2)
-
+     DataFilePath <- file.path(DirOut,"2019/01/01/CFGLOC108440/data/prt_19963_2019-01-01.avro" )
+     FlagsFilePath <- file.path(DirOut,"2019/01/01/CFGLOC108440/flags/prt_19963_2019-01-01_flagsCal.avro" )
+     LocationFilePath <- file.path(DirOut,"2019/01/01/CFGLOC108440/location/prt_19963_locations.json" )
+     UncertaintyCoefFilePath <- file.path(DirOut,"2019/01/01/CFGLOC108440/uncertainty_coef/prt_19963_2019-01-01_uncertaintyCoef.json" )
+     UnCertaintyDataFilePath <- file.path(DirOut,"2019/01/01/CFGLOC108440/uncertainty_data/prt_19963_2019-01-01_uncertaintyData.avro" )
+     restructure_location_repo(DirIn, DirOut, Comb=TRUE)
+     expect_true(file.exists(DataFilePath))
+     expect_true(file.exists(FlagsFilePath))
+     expect_true(file.exists(LocationFilePath))
+     expect_true(file.exists(UncertaintyCoefFilePath))
+     expect_true(file.exists(UnCertaintyDataFilePath))
    }
- )
-
-
-test_that(
-  "Threshold Filter test expect zero thresholds in the input file",
-  {
-    DirIn <- "tests/test_input/pfs/threshold_fail"
-    DirOut <- "tests/test_output/pfs/threshold_fail"
-    Term <- "temp"
-    Ctxt <- "aspirated-single"
-    OutPutFile <- file.path(DirOut, "thresholds.json")
-    filter_threshold(DirIn,DirOut, Term,Ctxt)
-    result <- rjson::fromJSON(file = OutPutFile,simplify=TRUE)
-    expect_true(length(result$thresholds) ==0)
-  }
-)
-
-test_that(
-  "Threshold Filter test expect a thresholds with only Term and no Context in the input file",
-  {
-    DirIn <- "tests/test_input/pfs/threshold_with_only_term"
-    DirOut <- "tests/test_output/pfs/threshold_with_only_term"
-    Term <- "dewPoint"
-    Ctxt <- "aspirated-single"
-    OutPutFile <- file.path(DirOut, "thresholds.json")
-    filter_threshold(DirIn, DirOut, Term=Term)
-    result <- rjson::fromJSON(file = OutPutFile,simplify=TRUE)
-    expect_true(length(result$thresholds) ==3)
-  }
-)
-
-test_that(
-  "Threshold Filter test expect a thresholds with only context and no term in the input file",
-  {
-    DirIn <- "tests/test_input/pfs/threshold_with_only_context"
-    DirOut <- "tests/test_output/pfs/threshold_with_only_context"
-  # Term <- "temp"
-    Ctxt <- "aspirated-single"
-    OutPutFile <- file.path(DirOut, "thresholds.json")
-    filter_threshold(DirIn,DirOut,Ctxt = Ctxt)
-    result <- rjson::fromJSON(file = OutPutFile,simplify=TRUE)
-    expect_true(length(result$thresholds) ==2)
-  }
 )

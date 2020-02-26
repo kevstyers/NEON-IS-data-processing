@@ -61,19 +61,8 @@ restructure_location_repo <- function(DirBgn,
                              DirOut,
                              Ctxt = NULL,
                              Comb) {
-  log <- NEONprocIS.base::def.log.init()
+  log <- NEONprocIS.base:::def.log.init()
   
-  # Retrieve datum path. 
-  log$debug(base::paste0('Input directory: ',DirBgn))
-  
-  log$debug(base::paste0('Output directory: ',DirOut))
-  
-  # Context(s)
-  log$debug(base::paste0('Context(s) to filter locations by: ',base::paste0(Ctxt,collapse=",")))
-  
-  # Merge contents (TRUE/FALSE)
-  
-  log$debug(base::paste0('Merge/combine the directory contents of source-ids at the same location-id is set to: ', Comb))
   if(base::is.na(Comb)){
     log$fatal(base::paste0('Input argument Comb must be TRUE or FALSE')) 
     stop()
@@ -83,13 +72,8 @@ restructure_location_repo <- function(DirBgn,
   nameDirSub <- base::list('location')
   
   # Find all the input paths. We will process each one.
-  DirIn <- NEONprocIS.base::def.dir.in(DirBgn=DirBgn,nameDirSub=nameDirSub)
+  DirIn <- NEONprocIS.base:::def.dir.in(DirBgn=DirBgn,nameDirSub=nameDirSub)
   
-  if(base::length(DirIn) == 0){
-    log$warn(base::paste0('No datums found for processing in parent directory ',DirBgn))
-  } else {
-    log$info(base::paste0('Preparing to process ',base::length(DirIn),' datums.'))
-  }
   
   # Process each datum
   for(idxDirIn in DirIn){
@@ -97,7 +81,7 @@ restructure_location_repo <- function(DirBgn,
     log$info(base::paste0('Processing path to datum: ',idxDirIn))
     
     # Gather info about the input directory and formulate the parent output directory
-    InfoDirIn <- NEONprocIS.base::def.dir.splt.pach.time(idxDirIn)
+    InfoDirIn <- NEONprocIS.base:::def.dir.splt.pach.time(idxDirIn)
     idSrc <- utils::tail(InfoDirIn$dirSplt,1)
     idxDirOutPrnt <- base::paste0(c(DirOut,InfoDirIn$dirSplt[(InfoDirIn$idxRepo+1):(base::length(InfoDirIn$dirSplt)-1)]),collapse='/')
     
@@ -171,8 +155,7 @@ restructure_location_repo <- function(DirBgn,
                               '. Merged directory contents with any other source-ids at that named location.'))
         
       } else {
-        base::suppressWarnings(NEONprocIS.base::def.copy.dir.symb(idxDirIn,idxDirOut))
-        log$info(base::paste0('Restructured path to datum ',idxDirIn,' to ',base::paste0(idxDirOut,'/',idSrc)))
+        NEONprocIS.base::def.dir.copy.symb(idxDirIn,idxDirOut,log=log)
       }
       
     } # End loop around named locations
