@@ -25,7 +25,7 @@
 library(magrittr)
 
 #Point to your pipeline spec files directory
-specPath = "~/GitHub/NEON-IS-data-processing/pipe/parQuantumLine/"
+specPath = "~/GitHub/NEON-IS-data-processing/pipe/tempAirTriple/"
 
 
 #----------------------- Begin Program -----------------------

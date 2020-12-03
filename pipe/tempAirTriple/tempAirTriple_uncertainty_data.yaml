@@ -18,7 +18,7 @@ transform:
 input:
   pfs:
     name: IN_PATH
-    repo: tempAirTriple_prt
+    repo: tempAirTriple_context_filter
     glob: /*/*/*
     empty_files: true
 enable_stats: false
