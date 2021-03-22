@@ -4,10 +4,10 @@ from pathlib import Path
 
 import common.log_config as log_config
 
-from filter_joiner.filter_joiner import FilterJoiner
+from filter_joiner.joiner import FilterJoiner
 
 
-def main():
+def main() -> None:
     env = environs.Env()
     config: str = env.str('CONFIG')
     out_path: Path = env.path('OUT_PATH')
