@@ -37,6 +37,11 @@ input:
       repo: tempAirTriple_windobserverii_group_path
       glob: /windobserverii/*/*/*
       empty_files: true
+  - pfs:
+      name: DATA_PATH
+      repo: tempAirTriple_csat3_group_path
+      glob: /csat3/*/*/*
+      empty_files: true
 enable_stats: false
 standby: true
 
