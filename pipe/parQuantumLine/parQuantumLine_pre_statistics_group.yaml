@@ -3,7 +3,7 @@ pipeline:
   name: parQuantumLine_pre_statistics_group
 transform:
   image_pull_secrets: [battelleecology-quay-read-all-pull-secret]
-  image: quay.io/battelleecology/filter_joiner:6
+  image: quay.io/battelleecology/filter_joiner:9
   cmd: ["/bin/bash"]
   stdin:
   - "#!/bin/bash"
@@ -45,7 +45,7 @@ input:
       empty_files: true
   - pfs:
       name: UNCERTAINTY_COEF_PATH
-      repo: li191r_named_location_filter
+      repo: li191r_date_gap_filler_linker
       glob: /li191r/(*)/(*)/(*)
       joinOn: $1/$2/$3
       empty_files: true
