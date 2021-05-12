@@ -17,3 +17,5 @@ COPY --from=intermediate /root/arrow/cpp/release/release/ /root/arrow/cpp/releas
 RUN apk update \
     && apk add --no-cache bash gcc g++ musl-dev curl-dev linux-headers libxml2-dev openssl-dev libgit2-dev \
     && installr -d arrow devtools
+
+COPY ./ /pack/NEONprocIS.base/
