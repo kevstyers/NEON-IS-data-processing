@@ -28,7 +28,8 @@ RUN R -e 'utils::install.packages("devtools", repos="http://cran.us.r-project.or
 # Install V8
 ENV LD_LIBRARY_PATH=/usr/local/v8/lib
 RUN MAKEFLAGS='LDFLAGS=-L/usr/local/v8/lib -Wl,-rpath /usr/local/v8/lib'
-RUN R CMD INSTALL /V8_3.4.2.tar.gz --configure-vars='INCLUDE_DIR=/usr/local/v8/include LIB_DIR=/usr/local/v8/lib'
+RUN R CMD INSTALL /V8_3.4.2.tar.gz --configure-vars='INCLUDE_DIR=/usr/local/v8/include LIB_DIR=/usr/local/v8/lib' && \
+    rm -rf /V8_3.4.2.tar.gz
 
 ENV LIBARROW_BINARY=true
 ENV ARROW_USE_PKG_CONFIG=false
