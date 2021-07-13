@@ -32,7 +32,7 @@
         "pfs": {
           "name": "DATA_PATH",
           "repo": "surfacewaterPhysical_aquatroll200_level1_group",
-          "glob": "/*/*/*",
+          "glob": "/aquatroll200/*/*/*",
           "empty_files": true
         }
       },
@@ -40,7 +40,7 @@
         "pfs": {
           "name": "DATA_PATH",
           "repo": "surfacewaterPhysical_leveltroll500_level1_group",
-          "glob": "/*/*/*",
+          "glob": "/leveltroll500/*/*/*",
           "empty_files": true
         }
       },
