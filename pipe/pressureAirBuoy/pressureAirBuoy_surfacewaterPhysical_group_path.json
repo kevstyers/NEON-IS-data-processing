@@ -1,6 +1,6 @@
 {
   "pipeline": {
-    "name": "pressureAir_surfacewaterPhysical_group_path"
+    "name": "pressureAirBuoy_surfacewaterPhysical_group_path"
   },
   "transform": {
     "image_pull_secrets": [
