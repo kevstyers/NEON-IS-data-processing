@@ -19,8 +19,8 @@
   "input": {
       "pfs": {
         "name": "IN_PATH",
-        "repo": "pressureAir_related_location_group",
-        "glob": "/*/*/*"
+        "repo": "pressureAir_level1_group",
+        "glob": "/ptb330a/*/*/*"
       }
   },
   "enable_stats": false,
